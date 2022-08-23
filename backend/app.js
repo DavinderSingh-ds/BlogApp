@@ -2,11 +2,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import blogRouter from './routes/blog-routes';
 import router from './routes/user-routes';
+import cors from 'cors';
 
 const app = express();
 
 //middlewares 
-
+ app.use(cors());
 // signup rawbody data is converted by this express json
 app.use(express.json());
 app.use("/api/user", router)   // http://localhost:4000/api/user/

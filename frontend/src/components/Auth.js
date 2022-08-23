@@ -1,7 +1,13 @@
 import { Typography, Box, TextField,Button } from '@mui/material';
 import React,{useState} from 'react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../store';
+import { useNavigate } from 'react-router-dom';
 
 const Auth = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
       name:"",email:"",password:""
   });
@@ -14,10 +20,30 @@ const Auth = () => {
       [e.target.name]: e.target.value
     }));
   }
+  const sendRequest = async (type="login") => {
+    const res = axios.post(`http://localhost:4000/api/user/${type}`,{
+      name: inputs.name,
+      email: inputs.email,
+      password: inputs.password
+    })
+    .catch(err => console.log(err));
+
+    const data = await res.data;
+    return data;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
+    if(isSignup){
+      sendRequest("signup")
+      .then(() => dispatch(authActions.login())).then(()=> navigate("/blogs"))
+      .then(data=>console.log(data));
+    }else{
+      sendRequest()
+      .then(() => dispatch(authActions.login())).then(()=> navigate("/blogs"))
+      .then(data=> console.log(data));
+    }
   }
 
   return (
