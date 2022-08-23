@@ -16,7 +16,8 @@ const blogSchema = new Schema({
         required: true
     },
     user: {
-        type: String,
+        type: mongoose.Types.ObjectId, // not String
+        ref: "User",        // refernse = Collection Name
         required: true
     }
 
