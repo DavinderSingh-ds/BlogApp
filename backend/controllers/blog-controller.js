@@ -100,7 +100,7 @@ export const deleteBlog = async (req,res,next) => {
     return res.status(200).json({message: "Successfully Deleted"});
 };
 
-export const getByUserId = async (req,res,next) => {
+export const getBlogsByUserId = async (req,res,next) => {
     const userId = req.params.id;
     let userBlogs;
     try {
