@@ -4,7 +4,6 @@ import { Avatar,CardContent,CardHeader,CardMedia, Typography,Card } from '@mui/m
 const Blog = ({title,description,imageUrl,userName}) => {
   return (
     <div>
-        {" "}
         <Card sx={{ width: "40%" , margin: 'auto', mt:2, padding: 2, boxShadow: "5px 5px 10px #ccc", ":hover:":{
         boxShadow: "10px 10px 20px #ccc"
     }}}>
@@ -14,7 +13,7 @@ const Blog = ({title,description,imageUrl,userName}) => {
           {userName}
         </Avatar>
       }
-      title="Shrimp and Chorizo Paella"
+      title={title}
       subheader="September 14, 2016"
     />
     <CardMedia
@@ -24,8 +23,8 @@ const Blog = ({title,description,imageUrl,userName}) => {
       alt="Paella dish"
     />
     <CardContent>
-      <Typography variant="body2" color="text.secondary">
-        {description}
+      <Typography variant="body2" color="warning">
+        <b>{ userName }</b> {" : "} {description}
       </Typography>
     </CardContent>
   </Card></div>

@@ -5,12 +5,14 @@ import React, { useState } from 'react'
 const labelStyles = {mb:1,mt:2,fontSize: '24px', fontWeight: 'bold'};
 const AddBlog = () => {
   const [inputs, setInputs] = useState({
-    title:"",description:"",imageUrl:""
+    title:"",
+    description:"",
+    imageUrl:"",
 });
 
 const sendRequest = async () => {
   const res = await axios.post("http://localhost:4000/api/blog/add",{
-    title: setInputs.title,
+    title: inputs.title,
     description: inputs.description,
     image: inputs.imageUrl,
     user: localStorage.getItem("userId")
@@ -30,7 +32,7 @@ const handleChange = (e) => {
 const handleSubmit = (e) => {
   e.preventDefault();
   console.log(inputs);
-  sendRequest().then.apply(data=> console.log(data));
+  sendRequest().then(data=> console.log(data));
 }
 
   return (
