@@ -10,6 +10,13 @@ const AddBlog = () => {
     imageUrl:"",
 });
 
+const handleChange = (e) => {
+  setInputs((prevState)=>({
+    ...prevState,
+    [e.target.name]: e.target.value
+  }));
+}
+
 const sendRequest = async () => {
   const res = await axios.post("http://localhost:4000/api/blog/add",{
     title: inputs.title,
@@ -22,12 +29,6 @@ const sendRequest = async () => {
 
 }
 
-const handleChange = (e) => {
-  setInputs((prevState)=>({
-    ...prevState,
-    [e.target.name]: e.target.value
-  }));
-}
 
 const handleSubmit = (e) => {
   e.preventDefault();

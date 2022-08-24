@@ -20,7 +20,10 @@ const UserBlogs = () => {
   return (
     <div>
       {user && user.blogs && user.blogs.map((blog, index) => (
-        <Blog key={index}
+        <Blog 
+          id={blog._id}
+          key={index}
+          isUser={true}
           title={blog.title} 
           description={blog.description} 
           imageUrl={blog.image} 
